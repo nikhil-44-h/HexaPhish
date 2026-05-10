@@ -116,31 +116,31 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center py-20 px-4 sm:px-6 relative overflow-hidden">
+    <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center py-10 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
       
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none z-0">
-        <div className="absolute top-[10%] left-[5%] w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[20%] right-[5%] w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-[10%] left-[5%] w-64 h-64 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[20%] right-[5%] w-64 h-64 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <motion.div
         animate={{ opacity: loading ? 0.3 : 1, y: loading ? -10 : 0 }}
-        className="text-center mb-16 relative z-10 transition-all duration-700"
+        className="text-center mb-10 sm:mb-16 relative z-10 transition-all duration-700"
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-900 text-white text-[10px] font-black tracking-[0.3em] mb-8 uppercase border border-surface-700 shadow-xl"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-900 text-white text-[10px] font-black tracking-[0.3em] mb-6 sm:mb-8 uppercase border border-surface-700 shadow-xl"
         >
           <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
           Neural Engine V2.0 Active
         </motion.div>
-        <h1 className="text-6xl md:text-8xl font-black mb-8 text-text-900 tracking-tighter leading-[0.9]">
+        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black mb-6 sm:mb-8 text-text-900 tracking-tighter leading-[0.9]">
           HEXA<span className="text-primary">PHISH</span>
         </h1>
-        <p className="text-text-500 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
+        <p className="text-text-500 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-medium leading-relaxed px-4">
           Advanced threat intelligence for modern security. <br className="hidden md:block" /> Detect malicious patterns with precision.
         </p>
       </motion.div>
@@ -150,9 +150,9 @@ const Home = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="w-full max-w-3xl relative group mb-20 z-10"
+        className="w-full max-w-3xl relative group mb-16 sm:mb-20 z-10"
       >
-        <div className={`relative flex items-center bg-white rounded-[2.5rem] border-2 ${loading ? 'border-primary' : validationError ? 'border-danger' : 'border-surface-200'} p-3 shadow-2xl transition-all duration-500`}>
+        <div className={`relative flex items-center bg-white rounded-[2rem] sm:rounded-[2.5rem] border-2 ${loading ? 'border-primary' : validationError ? 'border-danger' : 'border-surface-200'} p-2 sm:p-3 shadow-2xl transition-all duration-500`}>
           <motion.button
             type="button"
             onClick={handlePaste}
@@ -160,9 +160,9 @@ const Home = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             title="Paste from clipboard"
-            className={`pl-6 pr-3 flex items-center justify-center transition-colors outline-none ${validationError ? 'text-danger' : 'text-text-400 hover:text-primary'}`}
+            className={`pl-4 sm:pl-6 pr-2 sm:pr-3 flex items-center justify-center transition-colors outline-none ${validationError ? 'text-danger' : 'text-text-400 hover:text-primary'}`}
           >
-            <Link2 size={28} className={loading ? 'text-primary' : ''} />
+            <Link2 size={24} className={loading ? 'text-primary' : ''} />
           </motion.button>
           <input
             type="text"
@@ -172,16 +172,18 @@ const Home = () => {
                 if (validationError) setValidationError('');
             }}
             disabled={loading}
-            placeholder="Paste suspicious URL here..."
-            className="flex-1 bg-transparent border-none outline-none text-text-900 px-3 py-6 font-mono text-xl placeholder:text-text-300 focus:ring-0"
+            placeholder="Suspicious URL..."
+            className="flex-1 bg-transparent border-none outline-none text-text-900 px-2 sm:px-3 py-4 sm:py-6 font-mono text-base sm:text-xl placeholder:text-text-300 focus:ring-0"
           />
           <button
             type="submit"
             disabled={loading || !url}
-            className="ml-3 bg-primary text-white px-10 py-6 rounded-[1.8rem] font-black tracking-widest flex items-center gap-3 hover:bg-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]"
+            className="ml-2 sm:ml-3 bg-primary text-white px-5 sm:px-10 py-4 sm:py-6 rounded-[1.5rem] sm:rounded-[1.8rem] font-black tracking-widest flex items-center gap-2 sm:gap-3 hover:bg-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]"
           >
-            {loading ? <Loader2 className="animate-spin" size={24} /> : <Search size={24} />}
-            {loading ? 'SCANNING' : 'ANALYZE'}
+            {loading ? <Loader2 className="animate-spin" size={20} /> : <Search size={20} className="sm:w-6 sm:h-6" />}
+            <span className={loading ? 'inline' : 'hidden xs:inline'}>
+                {loading ? 'SCANNING' : 'ANALYZE'}
+            </span>
           </button>
         </div>
 
@@ -191,27 +193,27 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              className="absolute -bottom-24 left-0 right-0 flex flex-col items-center gap-4"
+              className="absolute -bottom-28 sm:-bottom-24 left-0 right-0 flex flex-col items-center gap-4 px-4"
             >
-              <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl border border-surface-200 shadow-xl">
+              <div className="flex items-center gap-3 bg-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl border border-surface-200 shadow-xl w-full max-w-[280px] sm:max-w-none sm:w-auto">
                 <motion.div
                   key={scanStep}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-primary"
+                  className="text-primary shrink-0"
                 >
                   {scanSteps[scanStep].icon}
                 </motion.div>
-                <span className="text-text-900 font-black text-sm tracking-wide min-w-[200px]">
+                <span className="text-text-900 font-black text-xs sm:text-sm tracking-wide flex-1 sm:min-w-[200px] truncate">
                   {scanSteps[scanStep].label}
                 </span>
-                <span className="text-primary font-black text-xs tabular-nums">
+                <span className="text-primary font-black text-[10px] sm:text-xs tabular-nums">
                   {scanProgress}%
                 </span>
               </div>
               
               {/* Progress Bar */}
-              <div className="w-64 h-1.5 bg-surface-100 rounded-full overflow-hidden border border-surface-200 shadow-inner">
+              <div className="w-48 sm:w-64 h-1.5 bg-surface-100 rounded-full overflow-hidden border border-surface-200 shadow-inner">
                 <motion.div 
                   className="h-full bg-primary"
                   initial={{ width: 0 }}

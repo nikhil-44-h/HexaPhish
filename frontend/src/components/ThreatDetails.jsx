@@ -64,11 +64,11 @@ const ThreatDetails = ({ threats }) => {
   };
 
   return (
-    <div className="w-full mt-16">
-      <div className="flex items-center justify-between mb-8">
-        <h3 className="text-2xl font-black text-text-900 tracking-tight flex items-center gap-3">
+    <div className="w-full mt-10 sm:mt-16">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <h3 className="text-xl sm:text-2xl font-black text-text-900 tracking-tight flex items-center gap-3">
           Analysis Insights
-          <span className="text-xs font-medium px-3 py-1 rounded-full bg-white text-text-500 border border-surface-200 shadow-sm">
+          <span className="text-[10px] font-medium px-3 py-1 rounded-full bg-white text-text-500 border border-surface-200 shadow-sm whitespace-nowrap">
             {threats.length} {threats.length === 1 ? 'Finding' : 'Findings'}
           </span>
         </h3>
@@ -78,7 +78,7 @@ const ThreatDetails = ({ threats }) => {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="grid gap-6"
+        className="grid gap-4 sm:gap-6"
       >
         {threats.map((threat, index) => {
           const styles = getSeverityStyles(threat.severity);
@@ -87,35 +87,35 @@ const ThreatDetails = ({ threats }) => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={`group p-6 rounded-[2rem] border-2 ${styles.base} flex flex-col md:flex-row items-start gap-6 transition-all hover:translate-x-1 hover:shadow-xl hover:shadow-surface-900/5`}
+              className={`group p-5 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border-2 ${styles.base} flex flex-col md:flex-row items-start gap-4 sm:gap-6 transition-all hover:translate-x-1 hover:shadow-xl hover:shadow-surface-900/5`}
             >
-              <div className={`p-5 rounded-[1.25rem] ${styles.accent} ${styles.icon} shrink-0 shadow-inner`}>
+              <div className={`p-4 sm:p-5 rounded-2xl ${styles.accent} ${styles.icon} shrink-0 shadow-inner`}>
                 {getSeverityIcon(threat.severity)}
               </div>
 
               <div className="flex-1 space-y-3">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h4 className="font-black text-lg text-text-900 leading-none">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <h4 className="font-black text-base sm:text-lg text-text-900 leading-none">
                     {threat.type}
                   </h4>
-                  <span className={`text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest ${styles.badge}`}>
+                  <span className={`text-[9px] sm:text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest ${styles.badge}`}>
                     {threat.severity}
                   </span>
                 </div>
 
-                <p className="text-text-600 text-base leading-relaxed max-w-2xl font-medium">
+                <p className="text-text-600 text-sm sm:text-base leading-relaxed max-w-2xl font-medium">
                   {threat.description}
                 </p>
 
                 {threat.whyItMatters && (
                   <div className="pt-4 border-t border-surface-200/50 mt-4">
                     <div className="flex items-start gap-3">
-                      <div className={`mt-1 p-1 rounded-full ${styles.accent} ${styles.icon}`}>
-                        <HelpCircle size={12} />
+                      <div className={`mt-1 p-1 rounded-full ${styles.accent} ${styles.icon} shrink-0`}>
+                        <HelpCircle size={10} className="sm:w-3 sm:h-3" />
                       </div>
                       <div className="space-y-1">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-text-400">Security Context</span>
-                        <p className="text-sm text-text-500 font-medium italic">
+                        <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-text-400 leading-none">Security Context</span>
+                        <p className="text-[11px] sm:text-sm text-text-500 font-medium italic leading-relaxed">
                           {threat.whyItMatters}
                         </p>
                       </div>

@@ -65,11 +65,11 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-surface-200 bg-white mt-auto relative z-40">
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-text-400 text-sm font-medium">
-            &copy; {new Date().getFullYear()} HexaPhish Security. Designed for the digital frontier.
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+          <div className="text-text-400 text-xs sm:text-sm font-medium">
+            &copy; {new Date().getFullYear()} HexaPhish Security. <br className="sm:hidden" /> Designed for the digital frontier.
           </div>
-          <div className="text-text-600 text-[10px] font-black flex gap-8 uppercase tracking-[0.2em]">
+          <div className="text-text-600 text-[9px] sm:text-[10px] font-black flex gap-6 sm:gap-8 uppercase tracking-[0.2em]">
             <span 
               onClick={() => setActiveModal('privacy')}
               className="hover:text-primary cursor-pointer transition-colors"
@@ -88,7 +88,7 @@ const Footer = () => {
 
       <AnimatePresence>
         {activeModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -101,25 +101,27 @@ const Footer = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-surface-200"
+              className="relative w-full max-w-lg bg-white rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden border border-surface-200 max-h-[90vh] overflow-y-auto"
             >
-              <div className="p-8 md:p-10">
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-black text-text-900 tracking-tighter uppercase italic">
+              <div className="p-6 sm:p-10">
+                <div className="flex items-center justify-between mb-6 sm:mb-8 sticky top-0 bg-white z-10 pb-2">
+                  <h3 className="text-lg sm:text-2xl font-black text-text-900 tracking-tighter uppercase italic">
                     {modalContent[activeModal].title}
                   </h3>
                   <button 
                     onClick={() => setActiveModal(null)}
                     className="p-2 rounded-full hover:bg-surface-50 text-text-400 hover:text-text-900 transition-all"
                   >
-                    <X size={20} />
+                    <X size={18} className="sm:w-5 sm:h-5" />
                   </button>
                 </div>
-                {modalContent[activeModal].content}
-                <div className="mt-10 pt-6 border-t border-surface-100">
+                <div className="modal-scroll-area">
+                    {modalContent[activeModal].content}
+                </div>
+                <div className="mt-8 pt-6 border-t border-surface-100">
                   <button
                     onClick={() => setActiveModal(null)}
-                    className="w-full py-4 bg-primary text-white font-black uppercase tracking-widest text-xs rounded-2xl hover:bg-primary-600 transition-all"
+                    className="w-full py-4 bg-primary text-white font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-xl sm:rounded-2xl hover:bg-primary-600 transition-all"
                   >
                     Accept & Close
                   </button>

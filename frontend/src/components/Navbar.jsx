@@ -17,15 +17,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           
           {/* Logo Branding */}
-          <Link to="/" className="flex items-center group">
-            <span className="text-xl font-black tracking-tighter text-text-900 select-none">
+          <Link to="/" className="flex items-center group shrink-0">
+            <span className="text-lg sm:text-xl font-black tracking-tighter text-text-900 select-none">
               HEXA<span className="text-primary">PHISH</span>
             </span>
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center">
+            <div className="flex items-center gap-1 sm:gap-2">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 const Icon = link.icon;
@@ -34,18 +34,18 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2
+                    className={`relative px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2
                       ${isActive ? 'text-primary' : 'text-text-600 hover:text-text-900 hover:bg-surface-100'}
                     `}
                   >
                     <div className="w-4 h-4 flex items-center justify-center shrink-0">
                       <Icon size={16} />
                     </div>
-                    {link.name}
+                    <span className="hidden xs:block sm:block">{link.name}</span>
                     {isActive && (
                       <motion.div
                         layoutId="nav-pill"
-                        className="absolute inset-0 bg-primary/10 rounded-lg border border-primary/20"
+                        className="absolute inset-0 bg-primary/10 rounded-xl border border-primary/20"
                         initial={false}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -62,4 +62,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
