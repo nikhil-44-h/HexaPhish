@@ -76,7 +76,7 @@ const Home = () => {
   const analyzeUrl = async (e) => {
     if (e) e.preventDefault();
     if (loading) return; // Prevent double clicks
-    
+
     setValidationError('');
     if (!url.trim()) return;
 
@@ -84,19 +84,19 @@ const Home = () => {
       setValidationError('Please enter a valid URL');
       return;
     }
-    
+
     setLoading(true);
     setError('');
     setResult(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/analyze', { url });
-      
+      const response = await axios.post('https://hexaphish.onrender.com/api/analyze', { url });
+
       // Total scan time ~3 seconds for "Premium Feel"
       await new Promise(resolve => setTimeout(resolve, 3200));
-      
+
       setResult(response.data);
-      
+
       // Save to local storage
       const history = JSON.parse(localStorage.getItem('hexaphish_history') || '[]');
       const newEntry = {
@@ -117,7 +117,7 @@ const Home = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center py-10 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
-      
+
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none z-0">
         <div className="absolute top-[10%] left-[5%] w-64 h-64 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse"></div>
@@ -145,7 +145,7 @@ const Home = () => {
         </p>
       </motion.div>
 
-      <motion.form 
+      <motion.form
         onSubmit={analyzeUrl}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -168,8 +168,8 @@ const Home = () => {
             type="text"
             value={url}
             onChange={(e) => {
-                setUrl(e.target.value);
-                if (validationError) setValidationError('');
+              setUrl(e.target.value);
+              if (validationError) setValidationError('');
             }}
             disabled={loading}
             placeholder="Suspicious URL..."
@@ -182,14 +182,14 @@ const Home = () => {
           >
             {loading ? <Loader2 className="animate-spin" size={20} /> : <Search size={20} className="sm:w-6 sm:h-6" />}
             <span className={loading ? 'inline' : 'hidden xs:inline'}>
-                {loading ? 'SCANNING' : 'ANALYZE'}
+              {loading ? 'SCANNING' : 'ANALYZE'}
             </span>
           </button>
         </div>
 
         <AnimatePresence>
           {loading && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
@@ -211,10 +211,10 @@ const Home = () => {
                   {scanProgress}%
                 </span>
               </div>
-              
+
               {/* Progress Bar */}
               <div className="w-48 sm:w-64 h-1.5 bg-surface-100 rounded-full overflow-hidden border border-surface-200 shadow-inner">
-                <motion.div 
+                <motion.div
                   className="h-full bg-primary"
                   initial={{ width: 0 }}
                   animate={{ width: `${scanProgress}%` }}
@@ -222,9 +222,9 @@ const Home = () => {
               </div>
             </motion.div>
           )}
-          
+
           {validationError && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               className="absolute -bottom-10 left-6 flex items-center gap-2 text-danger font-bold text-sm"
